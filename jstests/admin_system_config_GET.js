@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'GET',
-   'url': 'https://api.estuary.tech/admin/system/config',
+   'url': 'http://localhost:3004/admin/system/config',
    'headers': {
       'Accept': 'application/json',
       'Authorization': 'Bearer EST-xxx-ARY'

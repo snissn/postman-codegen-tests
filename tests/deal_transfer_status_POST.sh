@@ -1,4 +1,4 @@
-curl --location --request POST 'https://api.estuary.tech/deal/transfer/status' \
+curl --location --request POST 'http://localhost:3004/deal/transfer/status' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer EST-xxx-ARY' \

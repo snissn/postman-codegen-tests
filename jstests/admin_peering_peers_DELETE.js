@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'DELETE',
-   'url': 'https://api.estuary.tech/admin/peering/peers',
+   'url': 'http://localhost:3004/admin/peering/peers',
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

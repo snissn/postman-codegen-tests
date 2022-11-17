@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'https://api.estuary.tech/admin/peering/stop',
+   'url': 'http://localhost:3004/admin/peering/stop',
    'headers': {
       'Accept': 'application/json',
       'Authorization': 'Bearer EST-xxx-ARY'

@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'https://api.estuary.tech/deal/transfer/status',
+   'url': 'http://localhost:3004/deal/transfer/status',
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

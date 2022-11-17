@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'GET',
-   'url': 'https://api.estuary.tech/pinning/pins',
+   'url': 'http://localhost:3004/pinning/pins',
    'headers': {
       'Accept': 'application/json',
       'Authorization': 'Bearer EST-xxx-ARY'

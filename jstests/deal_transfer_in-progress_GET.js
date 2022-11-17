@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'GET',
-   'url': 'https://api.estuary.tech/deal/transfer/in-progress',
+   'url': 'http://localhost:3004/deal/transfer/in-progress',
    'headers': {
       'Accept': 'application/json',
       'Authorization': 'Bearer EST-xxx-ARY'

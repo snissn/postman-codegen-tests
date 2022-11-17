@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'GET',
-   'url': 'https://api.estuary.tech/deal/status/f02620/:propcid',
+   'url': 'http://localhost:3004/deal/status/f02620/:propcid',
    'headers': {
       'Accept': 'application/json',
       'Authorization': 'Bearer EST-xxx-ARY'

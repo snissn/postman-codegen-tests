@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'https://api.estuary.tech/content/create?ignore-dupes=',
+   'url': 'http://localhost:3004/content/create?ignore-dupes=',
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

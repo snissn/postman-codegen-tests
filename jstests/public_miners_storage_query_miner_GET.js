@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'GET',
-   'url': 'https://api.estuary.tech/public/miners/storage/query/f02620',
+   'url': 'http://localhost:3004/public/miners/storage/query/f02620',
    'headers': {
       'Accept': 'application/json',
       'Authorization': 'Bearer EST-xxx-ARY'

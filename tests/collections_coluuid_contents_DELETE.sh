@@ -1,4 +1,4 @@
-curl --location --request DELETE 'https://api.estuary.tech/collections/22aff2fd-4265-4bd0-9714-ecd159e759a5/contents' \
+curl --location --request DELETE 'http://localhost:3004/collections/22aff2fd-4265-4bd0-9714-ecd159e759a5/contents' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer EST-xxx-ARY' \

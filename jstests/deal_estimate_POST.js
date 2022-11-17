@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'https://api.estuary.tech/deal/estimate',
+   'url': 'http://localhost:3004/deal/estimate',
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

@@ -1,3 +1,3 @@
-curl --location --request GET 'https://api.estuary.tech/admin/system/config' \
+curl --location --request GET 'http://localhost:3004/admin/system/config' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer EST-xxx-ARY' --fail --no-progress-meter

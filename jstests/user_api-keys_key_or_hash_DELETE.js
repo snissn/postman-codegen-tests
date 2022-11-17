@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'DELETE',
-   'url': 'https://api.estuary.tech/user/api-keys/',
+   'url': 'http://localhost:3004/user/api-keys/',
    'headers': {
       'Accept': 'application/json',
       'Authorization': 'Bearer EST-xxx-ARY'

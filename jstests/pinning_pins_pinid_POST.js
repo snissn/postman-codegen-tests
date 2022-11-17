@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'https://api.estuary.tech/pinning/pins/:pinid',
+   'url': 'http://localhost:3004/pinning/pins/:pinid',
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'DELETE',
-   'url': 'https://api.estuary.tech/pinning/pins/:pinid',
+   'url': 'http://localhost:3004/pinning/pins/:pinid',
    'headers': {
       'Accept': 'application/json',
       'Authorization': 'Bearer EST-xxx-ARY'

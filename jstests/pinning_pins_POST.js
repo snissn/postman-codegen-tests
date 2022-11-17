@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'https://api.estuary.tech/pinning/pins',
+   'url': 'http://localhost:3004/pinning/pins',
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -10,7 +10,9 @@ var options = {
    body: JSON.stringify({
       "cid": "<string>",
       "meta": {
-         "suntbb9": false
+         "tempor8eb": true,
+         "Ut_d": 5118931,
+         "sit21": 1175909.507988274
       },
       "name": "<string>",
       "origins": [

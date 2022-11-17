@@ -1,7 +1,7 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'https://api.estuary.tech/collections/',
+   'url': 'http://localhost:3004/collections/',
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

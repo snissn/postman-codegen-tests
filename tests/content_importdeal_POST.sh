@@ -1,4 +1,4 @@
-curl --location --request POST 'https://api.estuary.tech/content/importdeal' \
+curl --location --request POST 'http://localhost:3004/content/importdeal' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer EST-xxx-ARY' \

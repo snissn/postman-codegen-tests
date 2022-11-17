@@ -1,3 +1,3 @@
-curl --location --request GET 'https://api.estuary.tech/pinning/pins' \
+curl --location --request GET 'http://localhost:3004/pinning/pins' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer EST-xxx-ARY' --fail --no-progress-meter
