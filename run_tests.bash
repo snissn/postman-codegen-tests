@@ -9,14 +9,15 @@ total=0
 
 set +e
 
-for test_script in $(ls tests); do
+for test_script in $(ls tests/*); do
   total=$((total+1))
 
-  bash tests/$test_script > /dev/null
+  bash $test_script > /dev/null
   if [ $? -eq 0 ]; then
     success=$((success+1))
   else
-    echo $test_script failed
+    echo "[$test_script]($test_script)" failed
+    echo 
     fails=$((fails+1))
   fi
 
