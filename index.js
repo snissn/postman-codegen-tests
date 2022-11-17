@@ -3,6 +3,8 @@ const swagger_data = require("./swagger.json")
 
 var testdata = require("./testdata").data
 
+const HOST = "http://localhost:3004"
+
 
 if(!process.env.APIKEY){
   throw "API KEY in environment variable APIKEY required"
@@ -40,7 +42,7 @@ function write_file_curl(filename, data){
 }
 
 function update_request(request, auth){
-  request.url.host = ["https://api.estuary.tech"] // todo grab from openapi.json
+  request.url.host = [HOST] // todo grab from openapi.json
   request.url.auth = auth
 
   return request

@@ -1,15 +1,25 @@
+set -eu
+
+export APIKEY=$(cat APIKEY)
+node index.js
+
 fails=0
 success=0
 total=0
+
+set +e
+
 for test_script in $(ls tests); do
   total=$((total+1))
-  success=$((success+1))
 
-  bash tests/$test_script > /dev/null || {
+  bash tests/$test_script > /dev/null
+  if [ $? -eq 0 ]; then
+    success=$((success+1))
+  else
     echo $test_script failed
     fails=$((fails+1))
-    success=$((success-2))
-  }
+  fi
+
 done
 
 
