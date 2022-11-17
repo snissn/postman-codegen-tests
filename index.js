@@ -25,7 +25,8 @@ var codegen = require('postman-code-generators'),
   var fs = require('fs'),
 
 Converter = require('openapi-to-postmanv2'),
-openapiData = fs.readFileSync('openapi.json', {encoding: 'UTF8'});
+//openapiData = fs.readFileSync('openapi.json', {encoding: 'UTF8'});
+openapiData = fs.readFileSync('swagger.json', {encoding: 'UTF8'});
 //swagger.json
 
 
