@@ -1,6 +1,63 @@
+if(!process.env.APIKEY){
+  throw "API KEY in environment variable APIKEY required"
+}
+const HOST = "http://localhost:3004"
+const APIKEY = `Bearer ${process.env.APIKEY}`
+
+var EstuaryClient = require('estuary-client');
+let defaultClient = EstuaryClient.ApiClient.instance;
+var bearerAuth = defaultClient.authentications['bearerAuth'];
+bearerAuth.apiKey = APIKEY
+
+defaultClient.basePath = HOST
+let opts = {
+  'expiry': "24h"
+};
 
 
-const coluuid = "22aff2fd-4265-4bd0-9714-ecd159e759a5" //todo get this from api
+async function genApiKey(){
+  return new Promise((resolve, reject) => {
+    let apiInstance = new EstuaryClient.UserApi();
+    apiInstance.userApiKeysPost(opts, (error, data, response) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(data)
+      }
+    });
+  })
+}
+
+
+async function genCollection(){
+  return new Promise((resolve, reject) => {
+  let apiInstance = new EstuaryClient.CollectionsApi();
+  let body = new EstuaryClient.MainCreateCollectionBody({"name":"NAME","description":"DESCRIPTION"}); // MainCreateCollectionBody | Collection name and description
+  apiInstance.collectionsPost(body, (error, data, response) => {
+    if (error) {
+      reject(error)
+    } else {
+      resolve(data)
+    }
+  });
+})
+
+
+}
+
+async function init(){
+  //for api key delete
+  const apiKey = await genApiKey()
+  data['key_or_hash'] = apiKey.token 
+  data['coluuid'] = []
+  for(var i = 0; i < 9; i++){
+    collection = await genCollection()
+    data['coluuid'].push(collection['uuid'])
+  }
+  data['#/definitions/util.ContentAddIpfsBody'] = {"root":cid, "filename": filename, "coluuid": data['coluuid'].pop() }
+  data['#/definitions/main.importDealBody'] = {"coluuid": data['coluuid'].pop(), "name": name, "dealIDs" : dealIDs }
+}
+
 
 var data = {}
 const body = '{}'
@@ -9,7 +66,7 @@ const content_id = "1"
 const dealid = "1" 
 const empty = ""
 const addresses = "127.0.0.1"
-const filename="@testfile"
+const filename="/testfile"
 const apikey="foo" 
 const name="testname"
 const pinid = 1 
@@ -29,8 +86,6 @@ const dealbodyverified = true
 
 data['#/definitions/main.createCollectionBody'] = {"name":"name","description":"description"}
 data['#/definitions/main.deleteContentFromCollectionBody'] = {"By":"content_id", "Value": content_id}
-data['#/definitions/util.ContentAddIpfsBody'] = {"root":cid, "filename": filename, "coluuid": coluuid }
-data['#/definitions/main.importDealBody'] = {"coluuid": coluuid, "name": name, "dealIDs" : dealIDs }
 data['#/definitions/main.estimateDealBody'] = { "size": dealbodysize, "replication" : dealbodyreplication, "durationBlks": dealbodydurationBlks, "verified": dealbodyverified }
 
 data['addresses'] = addresses
@@ -39,7 +94,6 @@ data['begin'] = empty
 data['body'] = body
 data['chanid'] = chanid
 data['cid'] = cid
-data['coluuid'] = coluuid
 data['cont'] = content_id
 data['content'] = content_id
 data['contentIDs'] = [content_id]
@@ -51,9 +105,10 @@ data['dealRequest'] =  {"content_id": content_id}
 data['dealid'] = dealid
 data['dir'] =  empty
 data['duration'] = empty
-data['expiry'] = empty
+data['expiry'] = '24h'
 data['filename'] = filename
 data['id'] =  1 
+data[':id'] =  1 
 data['ignore-dupes'] = empty
 data['ignore-failed'] = empty
 data['key'] =  apikey
@@ -76,5 +131,5 @@ data['key_or_hash'] = empty
 data['pin'] = {"cid":cid, "name":name}
 
 
-module.exports = { data };
+module.exports = { data , init};
 

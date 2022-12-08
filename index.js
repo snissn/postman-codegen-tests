@@ -2,6 +2,7 @@ var path = require('path');
 const swagger_data = require("./swagger.json")
 
 var testdata = require("./testdata").data
+var testdata_module = require("./testdata")
 
 const HOST = "http://localhost:3004"
 
@@ -42,15 +43,21 @@ function write_file_curl(filename, data){
 }
 
 function update_request(request, auth){
-  request.url.host = [HOST] // todo grab from openapi.json
+  request.url.host = [HOST]
   request.url.auth = auth
 
   return request
 }
 
-function process_request(request, auth){
-  request = update_request(request, auth)
+function process_request(item, auth){
+  var request = item.request
+
   var name = request.url.path.join("_").replace(":","") + "_" + request.method
+
+  request = add_auth_to_header(request, auth)
+  request = add_data_to_request(request, item)
+  request = new sdk.Request(request)
+  request = update_request(request, auth)
   for( var lang_index in langs){
     var lang = langs[lang_index]
     var language = lang.language
@@ -83,6 +90,12 @@ function add_auth_to_header(request, auth){
 
 
 function get_value(key){
+  if(key == "id"){
+    console.log(key)
+  }
+  if(key == "coluuid"){
+    return testdata[key].pop()
+  }
   return testdata[key]
 }
 
@@ -95,10 +108,28 @@ function process_variable(request){
   return request
 }
 
+function process_path(request){
+  for(index in request.url.path){
+    var query = request.url.path[index]
+    if(query[0] == ":"){
+      request.url.path[index] = get_value( query.substr(1,query.length-1))
+    }
+  }
+  return request
+}
+
 function process_query(request){
   for(index in request.url.query){
     var query = request.url.query[index]
     query['value'] = get_value(query['key'])
+  }
+
+  //for format where url has something like /content/add/:filename
+  for(index in request.url.query){
+    var query = request.url.query[index]
+    if(query[0] == ":"){
+      query['value'] = get_value( query.substr(1,query.length-1))
+    }
   }
   return request
 }
@@ -144,6 +175,9 @@ function process_body(request, item){
         var key = param.schema['$ref']
         var data =  get_value(key)
         request.body.raw = JSON.stringify(data)
+      }else{
+        //console.log(request)
+
       }
     }
   }
@@ -154,6 +188,7 @@ function add_data_to_request(request, item){
   request = process_query(request)
   request = process_variable(request)
   request = process_body(request, item)
+  request = process_path(request)
   return request
 
 }
@@ -162,12 +197,8 @@ function process_collections(collections, auth){
   if(collections.item ){
       for (let i = 0; i < collections.item.length; i++) {
         var item = collections.item[i]
-        var request = item.request
-        if(request){
-          request = add_auth_to_header(request, auth)
-          request = add_data_to_request(request, item)
-          request = new sdk.Request(request)
-          process_request(request, auth)
+        if(item.request){
+          process_request(item, auth)
         }else{
           process_collections(item, auth)
         }
@@ -176,17 +207,24 @@ function process_collections(collections, auth){
 }
 
 
-Converter.convert({ type: 'string', data: openapiData },
-  {}, (err, conversionResult) => {
-    if (!conversionResult.result) {
-      console.log('Could not convert', conversionResult.reason);
-    }
-    else {
-      var auth = conversionResult.output[0].data.auth
-      var collections = conversionResult.output[0].data
 
-      process_collections(collections, auth)
+async function main(){
+  await testdata_module.init()
+  Converter.convert({ type: 'string', data: openapiData },
+    {}, (err, conversionResult) => {
+      if (!conversionResult.result) {
+        console.log('Could not convert', conversionResult.reason);
+      }
+      else {
+        var auth = conversionResult.output[0].data.auth
+        var collections = conversionResult.output[0].data
 
+        process_collections(collections, auth)
+
+      }
     }
-  }
-);
+  );
+}
+
+
+main()

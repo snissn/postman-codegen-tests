@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/snissn/swagger-postman#readme",
   "dependencies": {
+    "estuary-client": "^1.0.1",
     "openapi-to-postmanv2": "^4.3.0",
     "postman-code-generators": "^1.2.2"
   }
