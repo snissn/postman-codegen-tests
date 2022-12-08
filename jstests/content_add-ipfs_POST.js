@@ -5,12 +5,12 @@ var options = {
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer EST-xxx-ARY'
+      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
    },
    body: JSON.stringify({
       "root": "bafkreifvxooyaffa7gy5mhrb46lnpdom34jvf4r42mubf5efbodyvzeujq",
-      "filename": "@testfile",
-      "coluuid": "22aff2fd-4265-4bd0-9714-ecd159e759a5"
+      "filename": "/testfile",
+      "coluuid": "b67cec07-cee9-48ab-b8ce-1118ee0e16db"
    })
 
 };

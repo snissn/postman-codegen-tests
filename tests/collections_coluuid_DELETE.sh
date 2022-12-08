@@ -1,3 +1,3 @@
-curl --location --request DELETE 'http://localhost:3004/collections/22aff2fd-4265-4bd0-9714-ecd159e759a5' \
+curl --location --request DELETE 'http://localhost:3004/collections/585595b7-5cc1-4b47-ac79-71e2910733b3' \
 --header 'Accept: */*' \
---header 'Authorization: Bearer EST-xxx-ARY' --fail --no-progress-meter
+--header 'Authorization: Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY' --fail --no-progress-meter

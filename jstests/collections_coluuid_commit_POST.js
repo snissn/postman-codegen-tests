@@ -1,10 +1,10 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'http://localhost:3004/collections/22aff2fd-4265-4bd0-9714-ecd159e759a5/commit',
+   'url': 'http://localhost:3004/collections//commit',
    'headers': {
       'Accept': 'application/json',
-      'Authorization': 'Bearer EST-xxx-ARY'
+      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
    }
 };
 request(options, function (error, response) {

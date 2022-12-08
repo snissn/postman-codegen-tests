@@ -2,11 +2,11 @@ var request = require('request');
 var fs = require('fs');
 var options = {
    'method': 'POST',
-   'url': 'http://localhost:3004/content/add?coluuid=22aff2fd-4265-4bd0-9714-ecd159e759a5&replication=&ignore-dupes=&lazy-provide=&dir=',
+   'url': 'http://localhost:3004/content/add?coluuid&replication=&ignore-dupes=&lazy-provide=&dir=',
    'headers': {
       'Content-Type': 'multipart/form-data',
       'Accept': 'application/json',
-      'Authorization': 'Bearer EST-xxx-ARY'
+      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
    },
    formData: {
       'data': {

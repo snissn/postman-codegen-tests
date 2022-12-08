@@ -1,10 +1,10 @@
 var request = require('request');
 var options = {
    'method': 'GET',
-   'url': 'http://localhost:3004/collections/22aff2fd-4265-4bd0-9714-ecd159e759a5?dir=',
+   'url': 'http://localhost:3004/collections/db6f6d54-2975-4f07-a721-76f42de5b0d7?dir=',
    'headers': {
       'Accept': 'application/json',
-      'Authorization': 'Bearer EST-xxx-ARY'
+      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
    }
 };
 request(options, function (error, response) {

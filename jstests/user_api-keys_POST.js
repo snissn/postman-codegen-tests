@@ -1,10 +1,10 @@
 var request = require('request');
 var options = {
    'method': 'POST',
-   'url': 'http://localhost:3004/user/api-keys?expiry=&perms=',
+   'url': 'http://localhost:3004/user/api-keys?expiry=24h&perms=',
    'headers': {
       'Accept': 'application/json',
-      'Authorization': 'Bearer EST-xxx-ARY'
+      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
    }
 };
 request(options, function (error, response) {

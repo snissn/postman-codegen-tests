@@ -5,14 +5,13 @@ var options = {
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer EST-xxx-ARY'
+      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
    },
    body: JSON.stringify({
       "cid": "<string>",
       "meta": {
-         "tempor8eb": true,
-         "Ut_d": 5118931,
-         "sit21": 1175909.507988274
+         "eiusmod_0": false,
+         "elit_0": 2519401.8161127716
       },
       "name": "<string>",
       "origins": [

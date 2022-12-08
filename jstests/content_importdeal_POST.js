@@ -5,10 +5,10 @@ var options = {
    'headers': {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer EST-xxx-ARY'
+      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
    },
    body: JSON.stringify({
-      "coluuid": "22aff2fd-4265-4bd0-9714-ecd159e759a5",
+      "coluuid": "f0094785-5e53-4d90-a293-95d537db43d2",
       "name": "testname",
       "dealIDs": []
    })
