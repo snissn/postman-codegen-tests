@@ -65,15 +65,15 @@ const cid = "bafkreifvxooyaffa7gy5mhrb46lnpdom34jvf4r42mubf5efbodyvzeujq"
 const content_id = "1"
 const dealid = "1" 
 const empty = ""
-const addresses = "127.0.0.1"
 const filename="/testfile"
 const apikey="foo" 
 const name="testname"
 const pinid = 1 
 const propcid = 1 
-const pubkey = ""
 const chanid = ""
 const ContentCreateBody = {} 
+const pubkey = "CAESIKFRR4yzxwk1aKotoPiUtR8OeQ/yydF18J9h5Y8gLAFN"
+const addresses = "/ip4/127.0.0.1/tcp/4001/p2p/12D3KooWLg5h6dARgiBcY6yTTMw8ivPzJufjEBDXahJNKWRGMWNg",
 
 const dealIDs = [] 
 
