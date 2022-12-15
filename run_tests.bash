@@ -2,7 +2,9 @@ set -eu
 
 export APIKEY=$(cat APIKEY)
 
-curl https://raw.githubusercontent.com/application-research/estuary/dev/docs/swagger.json -o swagger.json
+#curl https://raw.githubusercontent.com/application-research/estuary/dev/docs/swagger.json -o swagger.json
+
+rm -f tests/*
 
 node index.js
 
@@ -12,7 +14,7 @@ total=0
 
 set +e
 
-for test_script in $(ls tests/*); do
+for test_script in $( ls tests/*|grep -v DELETE|grep -v miner| grep -v deal ; ls tests/*|grep DELETE;); do
   total=$((total+1))
 
   bash $test_script > /dev/null
