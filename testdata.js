@@ -73,7 +73,7 @@ const propcid = 1
 const chanid = ""
 const ContentCreateBody = {} 
 const pubkey = "CAESIKFRR4yzxwk1aKotoPiUtR8OeQ/yydF18J9h5Y8gLAFN"
-const addresses = "/ip4/127.0.0.1/tcp/4001/p2p/12D3KooWLg5h6dARgiBcY6yTTMw8ivPzJufjEBDXahJNKWRGMWNg"
+const addresses = ["/ip4/127.0.0.1/tcp/4001/p2p/12D3KooWLg5h6dARgiBcY6yTTMw8ivPzJufjEBDXahJNKWRGMWNg"]
 
 const dealIDs = [] 
 
@@ -125,8 +125,9 @@ data['propcid'] = propcid
 data['pubKey'] = pubkey
 data['replication'] = empty
 data['req'] = ContentCreateBody
+data['root'] = cid
 data['origins'] = addresses
-data['meta'] = empty
+data['meta'] = {}
 data['key_or_hash'] = empty
 data['pin'] = {"cid":cid, "name":name}
 
