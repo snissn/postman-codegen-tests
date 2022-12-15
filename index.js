@@ -156,6 +156,48 @@ function debug(data){
     console.log(JSON.stringify(data, null, 2))
 }
 
+function process_body_form(request, item){
+  if(request && request.body && request.body.mode && request.body.mode == "formdata"){
+    var body = request.body.formdata
+		for(var index in body){
+      var key = body[index].key
+      if(key == "data"){ // file uploads
+        request.body.formdata[index].src = get_value(key) 
+      }else{
+        request.body.formdata[index].value = get_value(key) 
+      }
+    }
+  }
+  return request
+}
+function process_body_urlencoded(request, item){
+  if(request && request.body && request.body.mode && request.body.mode == "urlencoded"){
+    var body = request.body.urlencoded
+  debug({"body":body})
+/*
+  "body": [
+    {
+      "disabled": false,
+      "key": "addresses",
+      "value": "<string>",
+      "description": "(Required) Autoretrieve's comma-separated list of addresses"
+    },
+    {
+      "disabled": false,
+      "key": "pubKey",
+      "value": "<string>",
+      "description": "(Required) Autoretrieve's public key"
+    }
+  ]
+*/
+		for(var index in body){
+      var key = body[index].key
+  console.log(key, get_value(key))
+      request.body.urlencoded[index].value = get_value(key+"_url") // the autoretrieve init endpoint is the only thing currently using this data format and uniquely needs a comma separately list for addresses
+    }
+  }
+  return request
+}
 function process_body(request, item){
   /*  "body": {
     "mode": "raw",
@@ -207,6 +249,8 @@ function add_data_to_request(request, item){
   request = process_query(request)
   request = process_variable(request)
   request = process_body(request, item)
+  request = process_body_urlencoded(request, item)
+  request = process_body_form(request, item)
   request = process_path(request)
   return request
 

@@ -74,6 +74,7 @@ const chanid = ""
 const ContentCreateBody = {} 
 const pubkey = "CAESIKFRR4yzxwk1aKotoPiUtR8OeQ/yydF18J9h5Y8gLAFN"
 const addresses = ["/ip4/127.0.0.1/tcp/4001/p2p/12D3KooWLg5h6dARgiBcY6yTTMw8ivPzJufjEBDXahJNKWRGMWNg"]
+const data_filename = 'foo' // what we're using as a test file
 
 const dealIDs = [] 
 
@@ -88,10 +89,14 @@ data['#/definitions/main.createCollectionBody'] = {"name":"name","description":"
 data['#/definitions/main.deleteContentFromCollectionBody'] = {"By":"content_id", "Value": content_id}
 data['#/definitions/main.estimateDealBody'] = { "size": dealbodysize, "replication" : dealbodyreplication, "durationBlks": dealbodydurationBlks, "verified": dealbodyverified }
 
+data['addresses_url'] = addresses[0]
+data['pubKey_url'] = pubkey
+
+
 data['addresses'] = addresses
 data['all'] = empty
 data['begin'] = empty
-data['body'] = body
+data['body'] = cid
 data['chanid'] = chanid
 data['cid'] = cid
 data['cont'] = content_id
@@ -99,6 +104,7 @@ data['content'] = content_id
 data['contentIDs'] = [content_id]
 data['content_id'] = content_id
 data['contentid'] = content_id
+data['data'] = data_filename
 data['datacid'] = cid
 data['deal'] = dealid
 data['dealRequest'] =  {"content_id": content_id}
