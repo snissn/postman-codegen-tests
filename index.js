@@ -171,12 +171,31 @@ function process_body(request, item){
     var swag = read_swagger(request)
     for( var param_index in swag.parameters ){
       var param = swag.parameters[param_index]
-      if(param.name == "body"){
+      if(param.schema){
         var key = param.schema['$ref']
         var data =  get_value(key)
-        request.body.raw = JSON.stringify(data)
+        if(data){
+          request.body.raw = JSON.stringify(data)
+        }else{
+          if(param.schema.type == "string")
+          {
+            var key = param.name
+            var data =  get_value(key)
+            request.body.raw = JSON.stringify(data)
+
+          }else{
+            var body_data = {}
+            var body = JSON.parse(request.body.raw)
+            for(var body_key in body){
+              body_data[body_key] = get_value(body_key)
+            }
+            request.body.raw = JSON.stringify(body_data)
+          }
+
+        }
       }else{
         //console.log(request)
+        //console.log(param)
 
       }
     }
