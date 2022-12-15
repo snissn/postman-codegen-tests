@@ -1,6 +1,9 @@
 set -eu
 
 export APIKEY=$(cat APIKEY)
+
+curl https://raw.githubusercontent.com/application-research/estuary/dev/docs/swagger.json -o swagger.json
+
 node index.js
 
 fails=0
@@ -20,6 +23,7 @@ for test_script in $(ls tests/*); do
     echo 
     fails=$((fails+1))
   fi
+  sleep 1
 
 done
 
