@@ -4,6 +4,9 @@ if(!process.env.APIKEY){
 const HOST = "http://localhost:3004"
 const APIKEY = `Bearer ${process.env.APIKEY}`
 
+
+const swagger = require('./swagger.json');
+
 var EstuaryClient = require('estuary-client');
 let defaultClient = EstuaryClient.ApiClient.instance;
 var bearerAuth = defaultClient.authentications['bearerAuth'];
@@ -56,6 +59,16 @@ async function init(){
   }
   data['#/definitions/util.ContentAddIpfsBody'] = {"root":cid, "filename": filename, "coluuid": data['coluuid'].pop() }
   data['#/definitions/main.importDealBody'] = {"coluuid": data['coluuid'].pop(), "name": name, "dealIDs" : dealIDs }
+  data['#/definitions/main.importDealBody'] = {"coluuid": data['coluuid'].pop(), "name": name, "dealIDs" : dealIDs }
+  for(var def in swagger.definitions){
+    var value = {}
+    if(swagger.definitions[def].properties){
+      for(var key in swagger.definitions[def].properties){
+        value[key] = get_value(key)
+      }
+    }
+    data['#/definitions/'+def] = value
+  }
 }
 
 
@@ -73,6 +86,7 @@ const propcid = 1
 const chanid = ""
 const ContentCreateBody = {} 
 const pubkey = "CAESIKFRR4yzxwk1aKotoPiUtR8OeQ/yydF18J9h5Y8gLAFN"
+const peerId = "12D3KooWN8vAoGd6eurUSidcpLYguQiGZwt4eVgDvbgaS7kiGTup"
 const addresses = ["/ip4/127.0.0.1/tcp/4001/p2p/12D3KooWLg5h6dARgiBcY6yTTMw8ivPzJufjEBDXahJNKWRGMWNg"]
 const data_filename = 'foo' // what we're using as a test file
 
@@ -93,6 +107,9 @@ data['addresses_url'] = addresses[0]
 data['pubKey_url'] = pubkey
 
 
+data["ID"] = peerId
+data['Addrs'] = addresses
+data['Connected'] = true
 data['addresses'] = addresses
 data['all'] = empty
 data['begin'] = empty
@@ -124,7 +141,7 @@ data['miner'] = miner
 data['name'] = name
 data['offset'] = empty
 data['path'] = filename
-data['peerIds'] = addresses
+data['peerIds'] = [peerId]
 data['perms'] =  empty
 data['pinid'] = pinid
 data['propcid'] = propcid
@@ -138,5 +155,11 @@ data['key_or_hash'] = empty
 data['pin'] = {"cid":cid, "name":name}
 
 
-module.exports = { data , init};
+function get_value(key){
+  if(key == "coluuid"){
+    return data[key].pop()
+  }
+  return data[key]
+}
+module.exports = { data , init, get_value};
 

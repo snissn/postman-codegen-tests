@@ -12,20 +12,18 @@ if(!process.env.APIKEY){
 }
 const APIKEY = `Bearer ${process.env.APIKEY}`
 
-var langs = [ {language: "curl", variant: "curl", "folder" : "tests" , extension: ".sh"} , {language: "nodejs", variant: "Request", folder: "jstests", extension: ".js"}]
+var langs = [ {language: "nodejs", variant: "axios", folder: "jstests", extension: ".js"}]
 
 var codegen = require('postman-code-generators'),
   sdk = require('postman-collection'),
-  language = 'curl'
-  variant = 'curl'
   options = {
-    indentCount: 3,
+    indentCount: 2,
     indentType: 'Space',
     trimRequestBody: true,
     followRedirect: true
   };
 
-  var fs = require('fs'),
+var fs = require('fs'),
 
 Converter = require('openapi-to-postmanv2'),
 //openapiData = fs.readFileSync('openapi.json', {encoding: 'UTF8'});
@@ -90,13 +88,7 @@ function add_auth_to_header(request, auth){
 
 
 function get_value(key){
-  if(key == "id"){
-    console.log(key)
-  }
-  if(key == "coluuid"){
-    return testdata[key].pop()
-  }
-  return testdata[key]
+  return testdata_module.get_value(key)
 }
 
 
@@ -215,6 +207,9 @@ function process_body(request, item){
       var param = swag.parameters[param_index]
       if(param.schema){
         var key = param.schema['$ref']
+        if(!key && param.schema.items){
+          key = param.schema.items['$ref']
+        }
         var data =  get_value(key)
         if(data){
           request.body.raw = JSON.stringify(data)
@@ -225,7 +220,13 @@ function process_body(request, item){
             var data =  get_value(key)
             request.body.raw = JSON.stringify(data)
 
-          }else{
+          }else if( param.schema.type == "array"){
+            var key = param.name
+            var data =  get_value(key)
+            request.body.raw = JSON.stringify(data)
+          }
+
+          else{
             var body_data = {}
             var body = JSON.parse(request.body.raw)
             for(var body_key in body){

@@ -4,9 +4,15 @@ export APIKEY=$(cat APIKEY)
 
 #curl https://raw.githubusercontent.com/application-research/estuary/dev/docs/swagger.json -o swagger.json
 
-rm -f tests/*
+rm -f jstests/*
 
 node index.js
+
+cp jsoverrides/* jstests/
+
+sed -i jstests/* -e 's/console.log(error)/throw(error)/' -e "s/APIKEY/$APIKEY/"
+
+
 
 fails=0
 success=0
@@ -14,10 +20,10 @@ total=0
 
 set +e
 
-for test_script in $( ls tests/*|grep -v DELETE|grep -v miner| grep -v deal ; ls tests/*|grep DELETE;); do
+for test_script in $( ls jstests/*|grep -v DELETE|grep -v miner| grep -v deal ; ls jstests/*|grep DELETE;); do
   total=$((total+1))
 
-  bash $test_script > /dev/null
+  node $test_script > /dev/null
   if [ $? -eq 0 ]; then
     success=$((success+1))
   else
@@ -25,7 +31,6 @@ for test_script in $( ls tests/*|grep -v DELETE|grep -v miner| grep -v deal ; ls
     echo 
     fails=$((fails+1))
   fi
-  sleep 1
 
 done
 
