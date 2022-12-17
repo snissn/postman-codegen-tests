@@ -2,7 +2,7 @@ var axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'http://localhost:3004/content/staging-zones',
+  url: 'http://localhost:3004/viewer',
   headers: { 
     'Accept': 'application/json', 
     'Authorization': 'Bearer ESTb70ce586-6da3-4854-942d-c7001b1207ceARY'

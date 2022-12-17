@@ -1,13 +1,18 @@
-var request = require('request');
-var options = {
-   'method': 'GET',
-   'url': 'http://localhost:3004/collections/db6f6d54-2975-4f07-a721-76f42de5b0d7?dir=',
-   'headers': {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
-   }
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://localhost:3004/collections/adb7a5d5-10ca-4828-94e3-20617f658d43?dir=',
+  headers: { 
+    'Accept': 'application/json', 
+    'Authorization': 'Bearer ESTb70ce586-6da3-4854-942d-c7001b1207ceARY'
+  }
 };
-request(options, function (error, response) {
-   if (error) throw new Error(error);
-   console.log(response.body);
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  throw(error);
 });

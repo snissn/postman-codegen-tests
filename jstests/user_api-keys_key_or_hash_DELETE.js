@@ -1,13 +1,18 @@
-var request = require('request');
-var options = {
-   'method': 'DELETE',
-   'url': 'http://localhost:3004/user/api-keys/ESTf4309dc9-53aa-4a78-a9aa-f3d5bf6916adARY',
-   'headers': {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
-   }
+var axios = require('axios');
+
+var config = {
+  method: 'delete',
+  url: 'http://localhost:3004/user/api-keys/EST8b7f2785-9d20-4bf5-bbe2-abaa69236453ARY',
+  headers: { 
+    'Accept': 'application/json', 
+    'Authorization': 'Bearer ESTb70ce586-6da3-4854-942d-c7001b1207ceARY'
+  }
 };
-request(options, function (error, response) {
-   if (error) throw new Error(error);
-   console.log(response.body);
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  throw(error);
 });

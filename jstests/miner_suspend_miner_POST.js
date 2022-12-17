@@ -1,12 +1,15 @@
 var axios = require('axios');
+var data = JSON.stringify({});
 
 var config = {
-  method: 'get',
-  url: 'http://localhost:3004/content/staging-zones',
+  method: 'post',
+  url: 'http://localhost:3004/miner/suspend/f02620',
   headers: { 
+    'Content-Type': 'application/json', 
     'Accept': 'application/json', 
     'Authorization': 'Bearer ESTb70ce586-6da3-4854-942d-c7001b1207ceARY'
-  }
+  },
+  data : data
 };
 
 axios(config)

@@ -1,19 +1,23 @@
-var request = require('request');
-var options = {
-   'method': 'DELETE',
-   'url': 'http://localhost:3004/admin/peering/peers',
-   'headers': {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
-   },
-   body: JSON.stringify([
-      "<boolean>",
-      "<boolean>"
-   ])
+var axios = require('axios');
+var data = JSON.stringify([
+  "12D3KooWN8vAoGd6eurUSidcpLYguQiGZwt4eVgDvbgaS7kiGTup"
+]);
 
+var config = {
+  method: 'delete',
+  url: 'http://localhost:3004/admin/peering/peers',
+  headers: { 
+    'Content-Type': 'application/json', 
+    'Accept': 'application/json', 
+    'Authorization': 'Bearer ESTb70ce586-6da3-4854-942d-c7001b1207ceARY'
+  },
+  data : data
 };
-request(options, function (error, response) {
-   if (error) throw new Error(error);
-   console.log(response.body);
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  throw(error);
 });

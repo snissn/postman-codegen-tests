@@ -1,23 +1,26 @@
-var request = require('request');
-var options = {
-   'method': 'POST',
-   'url': 'http://localhost:3004/content/create?ignore-dupes=',
-   'headers': {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer EST0c8b9abc-b1ca-41c3-ae0b-b91ca0b3fa1dARY'
-   },
-   body: JSON.stringify({
-      "coluuid": "<string>",
-      "dir": "<string>",
-      "location": "<string>",
-      "name": "<string>",
-      "root": "<string>",
-      "type": "<integer>"
-   })
+var axios = require('axios');
+var data = JSON.stringify({
+  "coluuid": "5c797ac7-0696-4414-9a1f-6ee77e82f69b",
+  "dir": "",
+  "name": "testname",
+  "root": "bafkreifvxooyaffa7gy5mhrb46lnpdom34jvf4r42mubf5efbodyvzeujq"
+});
 
+var config = {
+  method: 'post',
+  url: 'http://localhost:3004/content/create?ignore-dupes=',
+  headers: { 
+    'Content-Type': 'application/json', 
+    'Accept': 'application/json', 
+    'Authorization': 'Bearer ESTb70ce586-6da3-4854-942d-c7001b1207ceARY'
+  },
+  data : data
 };
-request(options, function (error, response) {
-   if (error) throw new Error(error);
-   console.log(response.body);
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  throw(error);
 });
