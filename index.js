@@ -12,7 +12,7 @@ if(!process.env.APIKEY){
 }
 const APIKEY = `Bearer ${process.env.APIKEY}`
 
-var langs = [ {language: "curl", variant: "curl", "folder" : "tests" , extension: ".sh"} ]
+var langs = [ {language: "curl", variant: "curl", "folder" : "tests" , extension: ".sh"} , {language: "nodejs", variant: "Request", folder: "jstests", extension: ".js"}]
 
 var codegen = require('postman-code-generators'),
   sdk = require('postman-collection'),
